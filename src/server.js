@@ -15,6 +15,12 @@ app.get("/*", (req, res) => res.redirect("/"));
 const httpServer = http.createServer(app);
 const wsServer = new Server(httpServer);
 
+wsServer.on("connection", (backSocket) => {
+  backSocket.on("enter_room", (msg) => {
+    console.log(msg);
+  });
+});
+
 /*
 const wss = new WebSocket.Server({ server });
 
